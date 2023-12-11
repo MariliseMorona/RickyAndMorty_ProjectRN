@@ -33,7 +33,7 @@ export const TextContainer = styled.View`
 export const TitleStyled = styled.Text`
     text-align: center;
     font-weight: bold;
-    font-size: 35;
+    font-size: 35px;
 `;
 
 export const SubtitleStyled = styled.Text`
