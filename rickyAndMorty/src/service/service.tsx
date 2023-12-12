@@ -4,23 +4,18 @@ import axios from "axios";
 const baseUrl = 'https://rickandmortyapi.com/api';
 const allCharacters = '/character';
 
-const API: React.FC = () => {
 
-    const [data, setData] = useState<any>(null);
-
-    useEffect(() => {
-        axios({
-            method: 'get',
-            url: `${baseUrl}${allCharacters}`,
-        }) .then((response) => {
-            console.log(response.data);
-        })
-        .catch((error) => {
-            console.error('Erro na chamada da API:', error);
+const API = async () => {
+    try {
+        const response = await axios({
+        method: 'get',
+        url: `${baseUrl}${allCharacters}`,
         });
-    }, []); 
- return null   
-}
-    
-  
+        return response.data;
+    } catch (error) {
+        console.error('Erro na chamada da API:', error);
+        throw error;
+    }
+};
+
 export default API;

@@ -1,16 +1,16 @@
 import React from "react";
-import { Container, Title, SubTitle } from "./styles";
+import { Container, TextTitle, TextSubTitle } from './styles'
 
-const ItemText: React.FC = ({ title, text }) => {
+const ItemText: React.FC = ({ textTitle,  textSubtitle}) => {
 
     return (
             <Container>
-                <Title>
-                    {title}:
-                </Title>
-                <SubTitle>
-                    {text}
-                </SubTitle>
+                <TextTitle>
+                    {textTitle}
+                </TextTitle>
+                <TextSubTitle>
+                    {textSubtitle}
+                </TextSubTitle>
             </Container>
     )
 };

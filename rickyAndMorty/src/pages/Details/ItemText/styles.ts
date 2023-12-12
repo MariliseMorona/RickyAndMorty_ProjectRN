@@ -6,7 +6,7 @@ export const Container = styled.View`
     flex-direction: row;
 `
 
-export const Title = styled.Text`
+export const TextTitle = styled.Text`
     flex: 0.2;
     text-align: left;
     font-weight: bold;
@@ -15,7 +15,7 @@ export const Title = styled.Text`
     
 `
 
-export const SubTitle = styled.Text` 
+export const TextSubTitle = styled.Text` 
     flex: 0.8;
     text-align: left;
     font-weight: bold;

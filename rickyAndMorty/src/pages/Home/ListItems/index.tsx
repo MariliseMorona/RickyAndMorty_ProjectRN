@@ -2,69 +2,28 @@ import React from "react";
 import { TouchableOpacity } from 'react-native';
 import { Container, TextContainer, ImageContainer, TitleStyled, SubtitleStyled, SubtitleLocationStyled, TitleLocationStyled, ListContainer, List, Separator } from './styles';
 import { Image } from "react-native";
-import imageVert from '../../../assets/rickyAndMortyEsampleCharacterVertical.jpg';
-import imageHori from '../../../assets/rickyAndMortyEsampleCharacterHorizontal.jpg';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList, AllCharacters } from "../../../routes/types";
 
+interface ListItemsProps {
+    navigation: StackNavigationProp<RootStackParamList, 'Details'>;
+    data: AllCharacters;
+  }
 
-/*const Data = [
-    {
-        name: "Quantum Rick",
-        state: "Unknown",
-        location: "Rick's Memories",
-        image: imageVert
-    },
-    {
-        name: "Wasp Rick",
-        state: "Alive",
-        location: "Earth (Replacement Dimension)",
-        image: imageHori
-    },
-    {
-        name: "Too Cute Jerry",
-        state: "Dead - Robot",
-        location: "Earth (Replacement Dimension)",
-        image: imageVert
-    },
-    {
-        name: "Defiance Squanch",
-        state: "Dead - Robot",
-        location: "Earth (Replacement Dimension)",
-        image: imageHori
-    },
-    {
-        name: "Quantum Rick",
-        state: "Unknown",
-        location: "Rick's Memories",
-        image: imageVert
-    },
-    {
-        name: "Wasp Rick",
-        state: "Alive",
-        location: "Earth (Replacement Dimension)",
-        image: imageHori
-    },
-    {
-        name: "Too Cute Jerry",
-        state: "Dead - Robot",
-        location: "Earth (Replacement Dimension)",
-        image: imageVert
-    },
-    {
-        name: "Defiance Squanch",
-        state: "Dead - Robot",
-        location: "Earth (Replacement Dimension)",
-        image: imageHori
-    }
-];*/
+const ListItems: React.FC<ListItemsProps> = ({ navigation, data }) => {
+    
+    const RenderItem: React.FC<{ item: Characters }> = ({ item }) => {
+        if (!item) {
+            console.log("Item is undefined or null");
+            return null;
+        }
 
-const ListItems: React.FC = ({ navigation, data }) => {
-    const RenderItem = ({ item }) => {
         return(
             <TouchableOpacity onPress={() => navigation.navigate("Details", { itemData: item })}>
             <Container>
                 <ImageContainer>
                     <Image
-                        source={item.image}
+                        source={{ uri: item.image }}
                         style={{ width: 100, height: 100 }}
                         borderBottomLeftRadius={10}
                         borderBottomRightRadius={10}
@@ -77,26 +36,26 @@ const ListItems: React.FC = ({ navigation, data }) => {
                         {item.name}
                     </TitleStyled>
                     <SubtitleStyled>
-                        {item.state}
+                        {item.gender}
                     </SubtitleStyled>                
                     <TitleLocationStyled>
                         Last known location: 
                     </TitleLocationStyled>
                     <SubtitleLocationStyled>
-                        {item.location}
+                        {item.location.name}
                     </SubtitleLocationStyled>
                 </TextContainer>
             </Container>
          </TouchableOpacity>
         )
     }
-
+    
     return (
         <ListContainer>
             <List
                 ItemSeparatorComponent={(item) =><Separator/>}
-                data={data}
-                renderItem={(item) => <RenderItem {...item} />}
+                data={data.results}
+                renderItem={({ item }) => <RenderItem item={item} />}
                 keyExtractor={(item, index) => index.toString()}
             />
         </ListContainer>

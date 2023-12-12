@@ -5,12 +5,14 @@ import ItemText from "./ItemText";
 
 const Details: React.FC = ({ route }) => {
 
+    console.log(route)
+    console.log(route.params)
     const { itemData } = route.params;
 
     return (
         <Container>
             <ImageBackground 
-                source={itemData.image}
+                source={{ uri: itemData.image }}
                 style={{ width: Dimensions.get("screen").width, height: Dimensions.get("screen").width }}>
             </ImageBackground>
             <TextContainer>
@@ -21,16 +23,16 @@ const Details: React.FC = ({ route }) => {
                 About
             </TitleAbout>
             <ItemText
-                title={"Specie"}
-                text={"specie"}>
+                textTitle={"Specie"}
+                textSubtitle={itemData.species}>
             </ItemText>
             <ItemText
-                title={"Origin"}
-                text={itemData.state}>
+                textTitle={"Origin"}
+                textSubtitle={itemData.name}>
             </ItemText>
             <ItemText
-                title={"Location"}
-                text={itemData.location}>
+                textTitle={"Location"}
+                textSubtitle={itemData.location.name}>
             </ItemText>
             </TextContainer>
             
